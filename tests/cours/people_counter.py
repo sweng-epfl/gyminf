@@ -1,0 +1,2 @@
+class PeopleCounter():
+    pass # TODO
