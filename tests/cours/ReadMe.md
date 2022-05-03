@@ -4,9 +4,18 @@ Installez Hamcrest d'abord :
 
     python3 -m pip install pyhamcrest
 
-Puis créez un fichier avec vos tests, p.ex., `functions_tests.py` et lancez les tests :
+Puis créez un fichier avec vos tests, p.ex., `my_tests.py`, qui commencera par :
 
-    python3 -m unittest functions_tests.py
+    from unittest import TestCase
+    from hamcrest import *
+
+    # idéalement avec un meilleur nom que "MyTests" :-)
+    class MyTests(TestCase):
+        ...
+
+Enfin, lancez les tests :
+
+    python3 -m unittest my_tests.py
 
 Vous pouvez aussi lancer les tests depuis un IDE, souvent via un clic droit sur le fichier de tests ou sur une fonction de test.
 
@@ -17,7 +26,7 @@ Pour la couverture de code, installez Coverage :
 
 Puis utilisez-le en remplaçant `python3` par `coverage run --branch` pour lancer les tests :
 
-    coverage run -m unittest functions_tests.py
+    coverage run -m unittest my_tests.py
 
 Enfin, affichez les résultats (en filtrant pour ne voir que les fichiers dans ce dossier, pas dans la librairie standard Python) :
 
