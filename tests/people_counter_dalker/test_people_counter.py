@@ -21,6 +21,13 @@ class TestPeopleCounter(unittest.TestCase):
         counter.increment()
         assert_that(counter.count, equal_to(3))
 
+    def test_reach_max(self):
+        counter = PeopleCounter(2)
+        counter.increment()
+        counter.increment()
+        counter.increment()
+        assert_that(counter.count, equal_to(2))
+
     def test_reset(self):
         counter = PeopleCounter()
         counter.increment()
