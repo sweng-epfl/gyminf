@@ -24,7 +24,7 @@ Pour la couverture de code, installez Coverage :
 
     python3 -m pip install coverage
 
-Puis utilisez-le en remplaçant `python3` par `coverage run --branch` pour lancer les tests :
+Puis utilisez-le en remplaçant `python3` par `coverage run` pour lancer les tests :
 
     coverage run -m unittest my_tests.py
 
