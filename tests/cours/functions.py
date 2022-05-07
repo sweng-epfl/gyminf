@@ -16,11 +16,11 @@ def split_string(str, sep):
     current = ""
     for c in str:
         if c == sep:
-            results += current
+            results.append(current)
             current = ""
         else:
             current += c
-    results += current
+    results.append(current)
     return results
 
 # Mélange le tableau 'arr' au hasard en le modifiant
