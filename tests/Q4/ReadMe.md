@@ -5,4 +5,4 @@ Un de vos collègues est également en train de développer un module de client 
 
 Votre tâche est de :
 - Modifier le code afin qu'il puisse être testé malgré l'absence de serveur et le code HTTP non fonctionnel ; puis
-- Tester le code et obtenir 100% de couverture d'instructions.
+- Tester le code et obtenir 100% de couverture d'instructions pour `WeatherService`.
