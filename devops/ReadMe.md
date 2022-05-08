@@ -6,7 +6,9 @@
 - [Q2: Intégration continue](Q2.md)
 - [Q3: Gestion de versions](Q3.md)
 
+
 Les [solutions](solutions/) sont disponibles.
+
 
 **Idées pour projets** :
 
