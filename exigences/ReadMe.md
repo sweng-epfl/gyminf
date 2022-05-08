@@ -7,10 +7,13 @@
 - [Q3: Personas](Q3.md)
 - [Q4: Personas](Q4.md)
 
+
 Les [solutions](solutions/) sont disponibles.
+
 
 Il n'y a pas d'exercices spécifiques sur la traduction, l'internationalisation, l'accessibilité, ou l'éthique.
 Ces sujets sont importants mais peu propices à des petits exercices.
+
 
 **Idées pour projets** :
 

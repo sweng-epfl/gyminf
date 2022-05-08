@@ -7,7 +7,9 @@
 - [Q3: Scrum](Q3.md)
 - [Q4: Méthodes de développement](Q4.md)
 
+
 Les [solutions](solutions/) sont disponibles.
+
 
 **Idées pour projets** :
 
