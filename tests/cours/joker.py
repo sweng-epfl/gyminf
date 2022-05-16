@@ -1,3 +1,5 @@
+# Exercice : Modifiez cette classe pour qu'elle soit testable, puis testez-là
+
 from urllib.request import Request, urlopen
 
 class Joker:

@@ -1,3 +1,5 @@
+# Exercice : Testez ces fonctions
+
 import random
 
 # Retourne le nombre 'n' de Fibonacci, ou lance une exception si n < 0

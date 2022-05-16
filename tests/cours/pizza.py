@@ -1,3 +1,5 @@
+# Exercice : Essayez d'obtenir une forte couverture d'instructions et de branches, et corrigez tout bug trouvé
+
 class Pizza:
     # Crée une Pizza avec le nom donné, qui peut être un calzone, et avec les toppings donnés
     def __init__(self, name, is_calzone, toppings):

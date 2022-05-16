@@ -1,3 +1,5 @@
+# Exercice : Modularisez ce code, sans changer ce que l'utilisateur voit/fait
+
 while True:
     text = input("Calcul à faire ? (en notation polonaise inverse; ou 'sortir') ")
     if text == "sortir": break
