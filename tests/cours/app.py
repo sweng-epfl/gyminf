@@ -1,3 +1,5 @@
+# Exercice optionnel : Testez la méthode main(), c.f. app_test.py
+
 from joker import Joker
 
 # Méthode principale séparée afin de pouvoir la tester
