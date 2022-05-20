@@ -1,3 +1,5 @@
+# Exercice : Ce code a plusieurs bugs, trouvez-les en exécutant le code et debuggez-les à l'aide d'un debugger
+
 class BinaryTree:
     def __init__(self, val, l, r):
         self.value = val
