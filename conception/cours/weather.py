@@ -42,3 +42,4 @@ class Presenteur():
         self.vue.affiche(self.modele.getMeteo())
 
 Presenteur()
+
