@@ -1,4 +1,6 @@
 # Exercice : Ce code a plusieurs bugs, trouvez-les en exécutant le code et debuggez-les à l'aide d'un debugger
+#            Avec un IDE, consultez la documentation de l'IDE pour utiliser le debugger
+#            Sinon utilisez `pdb` en ligne de commande : https://docs.python.org/3/library/pdb.html
 
 class BinaryTree:
     def __init__(self, val, l, r):
