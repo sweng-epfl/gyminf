@@ -1,12 +1,16 @@
 # Exercice : Modularisez ce code, sans changer ce que l'utilisateur voit/fait
 
+OPS = {
+    '+': lambda x, y: x + y,
+    '-': lambda x, y: x - y,
+    '*': lambda x, y: x * y,
+    '/': lambda x, y: x / y
+}
+
 
 def operer(operateur: str, arg1: int, arg2: int = 0) -> int:
     """Effectuer une opération"""
-    if operateur == "+": return arg1 + arg2
-    if operateur == "-": return arg1 - arg2
-    if operateur == "*": return arg1 * arg2
-    if operateur == "/": return arg1 / arg2
+    return OPS[operateur](arg1, arg2)
 
 
 def entier_ou_null(nombre: str) -> int:
@@ -26,7 +30,7 @@ def pol_calc(ordre: str):
     for p in parts:
         if p == '':
             continue
-        elif p in "+-*/":
+        elif p in OPS:
             lst.append(operer(p, lst.pop(), lst.pop()))
         else:
             n = entier_ou_null(p)
