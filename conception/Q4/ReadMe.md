@@ -5,6 +5,7 @@ Votre tâche est d'écrire une application console utilisant le pattern "Model-V
 - Une commande pour rafraîchir la météo
 - Une commande pour passer au jour suivant
 - Une commande pour passer au jour précédent
+- Une commande pour quitter l'application
 
 Une fois que c'est fait, ajoutez une fonctionalité de résilience : l'application doit réessayer d'obtenir la météo plusieurs fois en cas d'erreur.
 
