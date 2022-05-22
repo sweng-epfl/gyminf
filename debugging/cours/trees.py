@@ -6,12 +6,14 @@ class BinaryTree:
     def __init__(self, val, l, r):
         self.value = val
         self.left = l
-        self.right = l
+        self.right = r
 
     @staticmethod
     def from_list(lst):
+        if len(lst) == 1 :
+            return BinaryTree(lst[0], None, None)
         mid = len(lst) // 2
-        return BinaryTree(lst[mid], BinaryTree.from_list(lst[:mid]), BinaryTree.from_list(lst[mid:]))
+        return BinaryTree(lst[mid], BinaryTree.from_list(lst[:mid]), BinaryTree.from_list(lst[mid+1:]))
 
     def to_list(self):
         result = []
