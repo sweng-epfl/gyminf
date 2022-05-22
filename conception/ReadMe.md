@@ -6,6 +6,10 @@
 - [Q2: Abstraction](Q2.md)
 - [Q3: Modularité](Q3.md)
 
+**Exercices pratiques** :
+
+- [Q4: MVVM](Q4/)
+
 
 Les [solutions](solutions/) sont disponibles.
 
