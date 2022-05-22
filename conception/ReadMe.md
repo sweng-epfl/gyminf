@@ -3,6 +3,7 @@
 **Exercices théoriques** :
 
 - [Q1: Design patterns](Q1.md)
+- [Q2: Abstraction](Q2.md)
 
 
 Les [solutions](solutions/) sont disponibles.
