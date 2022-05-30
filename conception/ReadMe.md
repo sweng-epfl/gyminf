@@ -9,6 +9,7 @@
 **Exercices pratiques** :
 
 - [Q4: MVVM](Q4/)
+- [Q5: Modularité](Q5/)
 
 
 Les [solutions](solutions/) sont disponibles.
