@@ -15,7 +15,7 @@ class WeatherService:
     def get_weather(self):
         try:
             text = self.fetch()
-        except:
+        except ConnectionError:
             return Weather.UNKNOWN
         if text == "Sunny":
             return Weather.SUN
