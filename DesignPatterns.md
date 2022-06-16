@@ -1,6 +1,7 @@
-# Design patterns courantes
-
 Ce document contient une liste de design patterns courantes, avec leur contexte, et un exemple.
+
+_Les exemples ne sont là que pour illustrer les patterns de manière concise, du vrai code devrait gérer la visibilité (`public`, `private`, etc.),
+certains champs devraient probablement être `final`, etc._
 
 
 # Adapter
@@ -30,9 +31,9 @@ interface ArgbColor {
 }
 
 class BgraToArgbAdapter implements ArgbColor {
-    private final BgraColor wrapped;
+    BgraColor wrapped;
 
-    public BgraToArgbAdapter(BgraColor wrapped) {
+    BgraToArgbAdapter(BgraColor wrapped) {
         this.wrapped = wrapped;
     }
 
@@ -66,13 +67,13 @@ class Rectangle {
 
 class RectangleBuilder {
     // width, height sont requis
-    public RectangleBuilder(int width, int height) { ... }
+    RectangleBuilder(int width, int height) { ... }
     // optionnel, pas de bord par défaut
-    public RectangleBuilder withBorder(int thickness, Color color, boolean isDotted) { ... ; return this; }
+    RectangleBuilder withBorder(int thickness, Color color, boolean isDotted) { ... ; return this; }
     // optionnel, pas de fond par défaut
-    public RectangleBuilder withBackgroundColor(Color color) { ... ; return this; }
+    RectangleBuilder withBackgroundColor(Color color) { ... ; return this; }
     // pour créer le rectangle
-    public Rectangle build() { ... }
+    Rectangle build() { ... }
 }
 
 // Utilisation :
@@ -131,8 +132,8 @@ class Http1Client implements HttpClient { ... }
 class Http2Client implements HttpClient { ... }
 
 class RetryingHttpClient implements HttpClient {
-    private final HttpClient wrapped;
-    private final int maxRetries;
+    HttpClient wrapped;
+    int maxRetries;
 
     HttpClientImpl(HttpClient wrapped, int maxRetries) {
         this.wrapped = wrapped;
@@ -324,5 +325,159 @@ interface Serializer { ... }
 // Utilise une stratégie "serializer" car selon le contexte on veut potentiellement un format différent, de l'encryption, etc.
 class Cache {
     Cache(Serializer serializer) { ... }
+}
+```
+
+
+# MVC: Model-View-Controller
+
+Un _controller_ est un objet qui gère les requêtes utilisateurs à l'aide d'un _model_ puis retourne une _view_ à l'utilisateur.
+MVC est utile quand l'utilisateur interagit à l'aide d'une requête informatique, comme par exemple une requête HTTP.
+MVC permet de séparer le code et de le rendre plus maintenable, par exemple le model peut être testé sans devoir tester l'interface utilisateur avec.
+
+Exemple :
+
+```java
+// Model
+class WeatherForecast {
+    WeatherForecast(...) { ... }
+
+    int getTemperature(...) { ... }
+}
+
+// View
+// Ici en HTML, mais on pourrait avoir une interface `WeatherView` puis plusieurs types de vues,
+// par exemple retourner du HTML aux navigateurs Web mais du JSON si le service est appelé depuis un autre service
+// (utilisation du header HTTP "Accept")
+class HtmlWeatherView {
+    HtmlWeatherView(int temperature, ...) { ... }
+
+    String toString() { ... }
+}
+
+// Controller
+class WeatherController {
+    WeatherForecast forecast;
+
+    WeatherController() {
+        this.forecast = new WeatherForecast(...);
+    }
+
+    HtmlWeatherView get(...) {
+        int temperature = forecast.getTemperature(...);
+        return new HtmlWeatherView(temperature, ...);
+    }
+}
+
+// En général on utilise un framework que l'on configure avec quel chemins HTTP doit utiliser quelle méthode sur quel controller,
+// puis qui va créer une instance du bon Controller pour gérer une requête, et donner des paramètres à "get" en fonction de la requête
+// Mais on peut aussi le faire à la main :
+System.out.println(new WeatherController().get(...).toString());
+```
+
+
+# MVP: Model-View-Presenter
+
+Un _presenter_ est un objet qui est utilisé par une _view_ pour implémenter des opérations, et qui utilise en interne un _model_ pour l'implémentation,
+mettant ensuite à jour la view en fonction du résultat.
+MVP est utile quand l'utilisateur interagit avec la view, comme une application mobile ou desktop, et a le même but que MVP : rendre le code plus maintenable et testable.
+
+Exemple :
+
+```java
+// Model
+class WeatherForecast {
+    WeatherForecast(...) { ... }
+
+    int getTemperature(...) { ... }
+}
+
+// View
+// Si on veut plusieurs View pour le même presenter, il faut créer une interface pour, afin que le Presenter puisse l'utiliser
+class WeatherView {
+    WeatherPresenter presenter;
+
+    WeatherView(WeatherPresenter presenter) {
+        this.presenter = presenter;
+        presenter.setView(this);
+    }
+
+    void onClick(...) { presenter.showTemperature(); }
+
+    void showTemperature(int temperature) { ... }
+}
+
+// Presenter
+class WeatherPresenter {
+    WeatherForecast forecast;
+    WeatherView view;
+
+    WeatherPresenter(...) { ... }
+
+    void setView(WeatherView view) { this.view = view; }
+
+    void showTemperature() {
+        int temperature = forecast.getTemperature(...);
+        view.showTemperature(temperature);
+    }
+}
+```
+
+
+# MVVM: Model-View-ViewModel
+
+Un _viewmodel_ est une interface utilisateur définie en terme de données, de commandes, et d'évènements de changement des données (pattern _observer_),
+qui utilise en interne un _model_ pour implémenter les commandes et qui peut être utilisé par une _view_ pour afficher les données.
+MVVM est une évolution de MVP, qui évite de coupler un presenter à la view : la view dépend du viewmodel qui dépend du model, mais
+le viewmodel ne dépend pas de la view.
+
+Exemple :
+
+```java
+// Model
+class WeatherForecast {
+    WeatherForecast(...) { ... }
+
+    int getTemperature(...) { ... }
+}
+
+// View
+// On peut créer plusieurs types de View sans interface, car le ViewModel n'interagit pas directement avec
+class WeatherView {
+    WeatherViewModel viewModel;
+
+    WeatherView(WeatherViewModel viewModel) {
+        this.viewModel = viewModel;
+        viewModel.registerForTemperatureChanges(showTemperature);
+    }
+
+    void showTemperature() {
+        // ... affiche this.viewModel.getTemperature() ...
+    }
+}
+
+// ViewModel
+class WeatherViewModel {
+    // Pas de référence à une View !
+    // Uniquement un pattern Observer permettant à quiconque (View, mais aussi tests unitaires p.ex.) de s'abonner aux changements
+
+    WeatherForecast forecast;
+    int temperature;
+    Runnable temperatureCallback;
+
+    // Données
+    int getTemperature() { return temperature; }
+
+    // Évènements de changements de données
+    void registerForTemperatureChanges(Runnable action) { this.temperatureCallback = temperatureCallback; }
+
+    // Commande
+    void updateTemperature() {
+        // Cette opération serait asynchrone dans une vraie application,
+        // on pourrait aussi avoir une propriété `isLoading` permettant à la View d'afficher une barre de progression, par exemple
+        int temperature = forecast.getTemperature(...);
+        this.temperature = temperature;
+        if (temperatureCallback != null) { temperatureCallback.run(); }
+    }
 }
 ```
