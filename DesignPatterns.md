@@ -359,8 +359,10 @@ class HtmlWeatherView {
 class WeatherController {
     WeatherForecast forecast;
 
-    WeatherController() {
-        this.forecast = new WeatherForecast(...);
+    WeatherController(...) {
+        // Le controller peut soit créer un forecast lui-même,
+        // soit l'avoir comme dépendance (et donc créer une interface) pour pouvoir plus facilement tester
+        this.forecast = ...;
     }
 
     HtmlWeatherView get(...) {
@@ -372,7 +374,7 @@ class WeatherController {
 // En général on utilise un framework que l'on configure avec quel chemins HTTP doit utiliser quelle méthode sur quel controller,
 // puis qui va créer une instance du bon Controller pour gérer une requête, et donner des paramètres à "get" en fonction de la requête
 // Mais on peut aussi le faire à la main :
-System.out.println(new WeatherController().get(...).toString());
+System.out.println(new WeatherController(...).get(...).toString());
 ```
 
 
@@ -402,6 +404,9 @@ class WeatherView {
         presenter.setView(this);
     }
 
+    void start() { /* ... affichage de l'interface ... */ }
+
+    // Appelé quand l'utilisateur clique sur un bouton
     void onClick(...) { presenter.showTemperature(); }
 
     void showTemperature(int temperature) { ... }
@@ -412,7 +417,10 @@ class WeatherPresenter {
     WeatherForecast forecast;
     WeatherView view;
 
-    WeatherPresenter(...) { ... }
+    WeatherPresenter(...) {
+        // Même remarque que l'exemple MVC concernant l'injection
+        forecast = ...;
+    }
 
     void setView(WeatherView view) { this.view = view; }
 
@@ -421,6 +429,10 @@ class WeatherPresenter {
         view.showTemperature(temperature);
     }
 }
+
+// Utilisation
+new WeatherView(new WeatherPresenter(...)).start();
+
 ```
 
 
@@ -451,6 +463,11 @@ class WeatherView {
         viewModel.registerForTemperatureChanges(showTemperature);
     }
 
+    void start() { /* ... affichage de l'interface ... */ }
+
+    // Appelé quand l'utilisateur clique sur un bouton
+    void onClick(...) { viewModel.updateTemperature(); }
+
     void showTemperature() {
         // ... affiche this.viewModel.getTemperature() ...
     }
@@ -464,6 +481,11 @@ class WeatherViewModel {
     WeatherForecast forecast;
     int temperature;
     Runnable temperatureCallback;
+
+    WeatherViewModel(...) {
+        // Même remarque que l'exemple MVC concernant l'injection
+        forecast = ...;
+    }
 
     // Données
     int getTemperature() { return temperature; }
@@ -480,4 +502,7 @@ class WeatherViewModel {
         if (temperatureCallback != null) { temperatureCallback.run(); }
     }
 }
+
+// Utilisation
+new WeatherView(new WeatherViewModel(...)).start();
 ```
