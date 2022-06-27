@@ -1,4 +1,4 @@
-# Exercice : lisez la documentation des fonctions en début de fichier avant le main(),
+# Exercice : lisez les fonctions en début de fichier avant le main(),
 #            puis implémentez chacune des opérations décrites dans main(), dans l'ordre
 #            N'oubliez pas la documentation d'asyncio : https://docs.python.org/3/library/asyncio-task.html
 
