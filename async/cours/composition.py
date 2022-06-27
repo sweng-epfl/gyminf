@@ -3,7 +3,6 @@
 #            N'oubliez pas la documentation d'asyncio : https://docs.python.org/3/library/asyncio-task.html
 
 import asyncio
-import threading
 
 async def upload(text):
     await asyncio.sleep(1) # faisons semblant de travailler

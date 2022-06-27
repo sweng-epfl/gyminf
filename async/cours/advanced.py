@@ -19,9 +19,9 @@ async def count_sheep(flag_holder):
     return sum
 
 async def main():
-    # 5: Écrivez une fonction qui réutilise "old_async_add" mais retourne une future, puis "await"-ez l'ajout de 1 + 1 ici et "print"-ez le résultat
+    # 6: Écrivez une fonction qui réutilise "old_async_add" mais retourne une future, puis "await"-ez l'ajout de 1 + 1 ici et "print"-ez le résultat
 
-    # 6: Lancez `count_sheep` mais si cela ne se termine pas avant 5 seconds, annulez-le
+    # 7: Lancez `count_sheep` mais si cela ne se termine pas avant 5 seconds, annulez-le
     #    Indice: pour convertir la coroutine `count_sheep` en un Future, utilisez `asyncio.create_task`
 
     pass
