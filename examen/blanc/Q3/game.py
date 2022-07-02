@@ -59,32 +59,62 @@ class Game:
 class PotionGameTest(unittest.TestCase):
     """Tests visant 100% de couverture pour une utilisation minimale du prototype de jeu."""
 
-    def get_potions(self, taille):
-        """Revevoir une liste des petites potions restantes."""
-        return [p for p in self.game.inventory() if p.name == f"{taille} potion"]
-
     def setUp(self):
         """Effectuer mise en place minimale avant chaque test."""
         self.game = Game()
 
+    def get_potions(self, taille):
+        """Extraire de l'inventaire les potions d'une certaine taille."""
+        return [p for p in self.game.inventory() if p.name == f"{taille} potion"]
+
     def consommer_potion_apres_comptage(self, taille):
-        """Consommer une potion et retourner combien il y en avait avant."""
+        """Consommer une potion et retourner des données obtenues avant.
+
+        Retour: (valeur de la potion, variation du nombre de potions [début - fin])
+        """
         potions = self.get_potions(taille)
-        n_potions = len(potions)
-        self.game.consume(potions[0])
+        n_potions_debut = len(potions)
+        potion = potions[0]
+        pv_par_potion = potion.value
+        self.game.consume(potion)
         potions = self.get_potions(taille)
-        return n_potions
+        n_potions_fin = len(potions)
+        return pv_par_potion, n_potions_debut - n_potions_fin
 
     def test_consommation_effective_petite_potion(self):
         """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
         taille = "Petite"
-        n_potions = self.consommer_potion_apres_comptage(taille)
-        assert_that(len(potions), equal_to(n_potions - 1),
+        _, delta_potions = self.consommer_potion_apres_comptage(taille)
+        assert_that(delta_potions, equal_to(1),
                     f"il ne devrait pas rester de {taille} potion")
 
     def test_consommation_effective_grande_potion(self):
         """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
         taille = "Grande"
-        n_potions = self.consommer_potion_apres_comptage(taille)
-        assert_that(len(potions), equal_to(n_potions - 1),
+        _, delta_potions = self.consommer_potion_apres_comptage(taille)
+        assert_that(delta_potions, equal_to(1),
                     f"il ne devrait pas rester de {taille} potion")
+
+    def test_guerison_petite_potion(self):
+        """Tester que la consommotion d'une potion donne le bon nombre de pvs."""
+        taille = "Petite"
+        pvs = self.game.health()
+        _, valeur = self.consommer_potion_apres_comptage(taille)
+        assert_that(self.game.health(), equal_to(pvs + valeur),
+                    f"la potion devrait ajouter {pvs} points de vie")
+
+    def test_mouvement_x(self):
+        """Tester le mouvement horizontal."""
+        DELTA_X = 10
+        x_debut = self.game.position()[0]
+        self.game.move(DELTA_X, 0)
+        assert_that(self.game.position()[0], equal_to(x_debut + DELTA_X),
+                    f"le mouvement devrait ajouter {DELTA_X} unités à x")
+
+    def test_mouvement_y(self):
+        """Tester le mouvement vertical."""
+        DELTA_Y = 10
+        x_debut = self.game.position()[0]
+        self.game.move(DELTA_Y, 0)
+        assert_that(self.game.position()[0], equal_to(x_debut + DELTA_Y),
+                    f"le mouvement devrait ajouter {DELTA_Y} unités à y")
