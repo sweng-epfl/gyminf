@@ -81,6 +81,13 @@ class PotionGameTest(unittest.TestCase):
         n_potions_fin = len(potions)
         return pv_par_potion, n_potions_debut - n_potions_fin
 
+    def test_choix_petite_potion(self):
+        """Tester que la bonne potion est choisie."""
+        taille = "Petite"
+        potion = self.get_potions(taille)[0]
+        assert_that(potion.name, equal_to(f"{taille} potion"),
+                    f"On aurait du obtenir une {taille} potion")
+
     def test_consommation_effective_petite_potion(self):
         """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
         taille = "Petite"
@@ -103,7 +110,7 @@ class PotionGameTest(unittest.TestCase):
         assert_that(self.game.health(), equal_to(pvs + valeur),
                     f"la potion devrait ajouter {pvs} points de vie")
 
-    def test_mouvement_x(self):
+    def test_mouvement_x_possible(self):
         """Tester le mouvement horizontal."""
         DELTA_X = 10
         x_debut = self.game.position()[0]
@@ -111,10 +118,26 @@ class PotionGameTest(unittest.TestCase):
         assert_that(self.game.position()[0], equal_to(x_debut + DELTA_X),
                     f"le mouvement devrait ajouter {DELTA_X} unités à x")
 
-    def test_mouvement_y(self):
+    def test_mouvement_y_possible(self):
         """Tester le mouvement vertical."""
         DELTA_Y = 10
-        x_debut = self.game.position()[0]
+        y_debut = self.game.position()[0]
         self.game.move(DELTA_Y, 0)
-        assert_that(self.game.position()[0], equal_to(x_debut + DELTA_Y),
+        assert_that(self.game.position()[0], equal_to(y_debut + DELTA_Y),
+                    f"le mouvement devrait ajouter {DELTA_Y} unités à y")
+
+    def test_mouvement_x_impossible(self):
+        """Tester le mouvement horizontal."""
+        DELTA_X = -10
+        x_debut = self.game.position()[0]
+        self.game.move(DELTA_X, 0)
+        assert_that(self.game.position()[0], equal_to(x_debut),
+                    f"le mouvement devrait ajouter {DELTA_X} unités à x")
+
+    def test_mouvement_y_impossible(self):
+        """Tester le mouvement vertical."""
+        DELTA_Y = -10
+        y_debut = self.game.position()[0]
+        self.game.move(DELTA_Y, 0)
+        assert_that(self.game.position()[0], equal_to(y_debut),
                     f"le mouvement devrait ajouter {DELTA_Y} unités à y")
