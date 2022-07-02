@@ -19,9 +19,10 @@ class View:
     def montrer_inventaire(self):
         """Montrer l'inventaire actuel."""
         inventaire = self.game.inventory()
+        print()
         print("Inventaire:")
         for thing in inventaire:
-            print(thing)
+            print("-", thing.name)
 
     def se_deplacer(self, delta_x, delta_y):
         """Demander au jeu de déplacer le personnage."""
@@ -30,6 +31,7 @@ class View:
     def mainloop(self):
         """Boucle principale du CLI."""
         while True:
+            print()
             self.montrer_personnage()
             print("Que voulez-vous faire?")
             print("(i) afficher l'inventaire")
