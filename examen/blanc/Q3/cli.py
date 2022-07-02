@@ -23,18 +23,29 @@ class View:
         for thing in inventaire:
             print(thing)
 
+    def se_deplacer(self, delta_x, delta_y):
+        """Demander au jeu de déplacer le personnage."""
+        self.game.move(delta_x, delta_y)
 
     def mainloop(self):
         """Boucle principale du CLI."""
         while True:
             self.montrer_personnage()
             print("Que voulez-vous faire?")
-            print("(0) quitter le jeu")
-            print("(1) afficher l'inventaire")
+            print("(i) afficher l'inventaire")
+            print("(n) se déplacer au nord")
+            print("(s) se déplacer au sud")
+            print("(e) se déplacer au est")
+            print("(w) se déplacer à l'ouest")
+            print("(q) quitter le jeu")
             reponse = input("> ")
             match(reponse):
-                case "0": break
-                case "1": self.montrer_inventaire()
+                case "q": break
+                case "i": self.montrer_inventaire()
+                case "n": self.se_deplacer(0, 1)
+                case "s": self.se_deplacer(0, -1)
+                case "e": self.se_deplacer(1, 0)
+                case "w": self.se_deplacer(-1, 0)
 
 
 def main():
