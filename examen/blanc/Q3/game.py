@@ -59,23 +59,32 @@ class Game:
 class PotionGameTest(unittest.TestCase):
     """Tests visant 100% de couverture pour une utilisation minimale du prototype de jeu."""
 
+    def get_potions(self, taille):
+        """Revevoir une liste des petites potions restantes."""
+        return [p for p in self.game.inventory() if p.name == f"{taille} potion"]
+
     def setUp(self):
         """Effectuer mise en place minimale avant chaque test."""
         self.game = Game()
 
-    def get_petites_potions(self):
-        """Revevoir une liste des petites potions restantes."""
-        return [p for p in self.game.inventory() if p.name == "Petite potion"]
-
-    def get_grandes_potions(self):
-        """Revevoir une liste des grandes potions restantes."""
-        return [p for p in self.game.inventory() if p.name == "Grande potion"]
-
-    def test_consommaiton_effective_petite_potion(self):
-        """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
-        potions = self.get_petites_potions()
+    def consommer_potion_apres_comptage(self, taille):
+        """Consommer une potion et retourner combien il y en avait avant."""
+        potions = self.get_potions(taille)
         n_potions = len(potions)
         self.game.consume(potions[0])
-        potions = self.get_petites_potions()
+        potions = self.get_potions(taille)
+        return n_potions
+
+    def test_consommation_effective_petite_potion(self):
+        """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
+        taille = "Petite"
+        n_potions = self.consommer_potion_apres_comptage(taille)
         assert_that(len(potions), equal_to(n_potions - 1),
-                    "il ne devrait pas rester de petite potion")
+                    f"il ne devrait pas rester de {taille} potion")
+
+    def test_consommation_effective_grande_potion(self):
+        """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
+        taille = "Grande"
+        n_potions = self.consommer_potion_apres_comptage(taille)
+        assert_that(len(potions), equal_to(n_potions - 1),
+                    f"il ne devrait pas rester de {taille} potion")
