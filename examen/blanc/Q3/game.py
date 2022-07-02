@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+import unittest
+from hamcrest import assert_that, equal_to
 
 @dataclass(frozen=True)
 class Potion:
@@ -52,3 +54,28 @@ class Game:
 
     def inventory(self):
         return { p: n for (p, n) in self._inventory.items() }
+
+
+class PotionGameTest(unittest.TestCase):
+    """Tests visant 100% de couverture pour une utilisation minimale du prototype de jeu."""
+
+    def setUp(self):
+        """Effectuer mise en place minimale avant chaque test."""
+        self.game = Game()
+
+    def get_petites_potions(self):
+        """Revevoir une liste des petites potions restantes."""
+        return [p for p in self.game.inventory() if p.name == "Petite potion"]
+
+    def get_grandes_potions(self):
+        """Revevoir une liste des grandes potions restantes."""
+        return [p for p in self.game.inventory() if p.name == "Grande potion"]
+
+    def test_consommaiton_effective_petite_potion(self):
+        """Tester que la consommotion d'une potion l'enlève de l'inventaire."""
+        potions = self.get_petites_potions()
+        n_potions = len(potions)
+        self.game.consume(potions[0])
+        potions = self.get_petites_potions()
+        assert_that(len(potions), equal_to(n_potions - 1),
+                    "il ne devrait pas rester de petite potion")
