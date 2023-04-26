@@ -31,7 +31,7 @@ Les trois premier doivent être fait dans l'ordre, car ce sont des prérequis po
 
 1. [Introduction](cours/Introduction/) et [Exigences](cours/Exigences/)
 2. [Infrastructure](cours/Infrastructure/)
-3. [Testing](cours/Testing/)
+3. [Tests](cours/Tests/)
 
 Le reste peut être fait dans n'importe quel ordre, par exemple :
 
