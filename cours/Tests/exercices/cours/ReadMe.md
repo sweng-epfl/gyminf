@@ -1,3 +1,3 @@
-# Testing: in-lecture exercises
+# Tests : exercices pendant le cours
 
-Please see the lecture notes for more details.
+C.f. notes de cours
