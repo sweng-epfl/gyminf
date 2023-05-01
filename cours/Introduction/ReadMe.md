@@ -25,7 +25,7 @@ Soit dit en passant, la société qui a fabriqué la machine à compter les poin
 
 De nos jours, les logiciels sont omniprésents, et savoir écrire et maintenir des logiciels est donc une compétence très prisée.
 Les voitures contiennent des millions de lignes de code, même les "vieilles" qui fonctionnent au gaz plutôt qu'à l'électricité.
-Même les appareils électroménagers tels que les machines à laver ou les barbecues utilisent des logiciels suffisamment complexes pour nécessiter des mises à jour régulières afin de corriger les bogues !
+Même les appareils électroménagers tels que les machines à laver ou les barbecues utilisent des logiciels suffisamment complexes pour nécessiter des mises à jour régulières afin de corriger les bugs !
 
 Au début des années 2000, les [entreprises ayant le plus de capitalisation de la planète](https://en.wikipedia.org/wiki/List_of_public_corporations_by_market_capitalization)
 étaient principalement actives dans les secteurs du gaz, du pétrole, de la santé, de la banque et d'autres services de ce type.
@@ -50,7 +50,7 @@ Il s'agit avant tout de _confiance_ : permettre aux gens de croire que le logici
 Les utilisateurs devraient pouvoir compter sur les logiciels pour les tâches quotidiennes, même celles qui pourraient les blesser ou les tuer si elles étaient mal exécutées.
 
 Prenons à nouveau l'exemple des voitures. Les voitures modernes sont dotées de capacités de conduite autonome, qui sont alimentées par un logiciel utilisant des données provenant de capteurs matériels.
-Si ce logiciel comporte des bogues qui provoquent des erreurs, [des accidents peuvent se produire](https://www.theguardian.com/technology/2021/aug/16/teslas-autopilot-us-investigation-crashes-emergency-vehicles).
+Si ce logiciel comporte des bugs qui provoquent des erreurs, [des accidents peuvent se produire](https://www.theguardian.com/technology/2021/aug/16/teslas-autopilot-us-investigation-crashes-emergency-vehicles).
 Ces accidents diminuent la confiance des utilisateurs dans le logiciel, ce qui peut rendre l'ensemble du logiciel de conduite autonome inutile en amenant les gens à refuser de l'utiliser.
 
 Les vaisseaux spatiaux sont un autre type de véhicule auquel les utilisateurs doivent faire confiance.
@@ -122,7 +122,7 @@ Mais si l'aile n'est qu'à moitié terminée, l'avion ne peut pas voler, même s
 Dans les cours précédents, vous avez appris à écrire du code. Dans ce cours, vous apprendrez les autres étapes clés du développement d'un logiciel :
 - **Exigences** : comment déterminer les besoins des utilisateurs et comment les traduire en logiciels.
 - **Conception** : comment concevoir un logiciel correctement, afin de rendre le logiciel plus facile à écrire et à maintenir.
-- **Évolution** : comment prendre un logiciel existant et le faire évoluer pour corriger les bogues et ajouter des fonctionnalités.
+- **Évolution** : comment prendre un logiciel existant et le faire évoluer pour corriger les bugs et ajouter des fonctionnalités.
 
 Ces étapes ne sont pas entièrement ordonnées non plus, car dans le monde réel des logiciels, il est courant que les exigences changent,
 que le plan ait besoin d'être ajusté, ou que le développement commence par l'évolution d'un logiciel existant.
@@ -130,7 +130,7 @@ que le plan ait besoin d'être ajusté, ou que le développement commence par l'
 Vous apprendrez également les tâches clés liées à l'écriture d'un code fiable et efficace :
 - **Opérations** : comment assurer le suivi du logiciel et de ses modifications, et comment éviter les erreurs humaines telles que l'intégration d'une modification de code qui casse le code existant.
 - **Test** : comment tester un logiciel de manière automatisée, pour donner confiance aux autres que le logiciel fait ce qu'il doit faire, et comment utiliser les tests pour aider l'ensemble du processus de développement.
-- **Débogage** : comment utiliser les outils et les techniques modernes pour trouver et corriger les bogues d'un logiciel.
+- **Débogage** : comment utiliser les outils et les techniques modernes pour trouver et corriger les bugs d'un logiciel.
 - **Performance** : comment concevoir et écrire des logiciels efficaces, et comment trouver et résoudre les problèmes de performance.
 - **Sécurité** : comment écrire des logiciels qui résistent aux entrées d'utilisateurs malveillants et comment s'assurer que les utilisateurs ne peuvent pas rompre la confidentialité, l'intégrité et la disponibilité des données.
 - **Travail d'équipe** : comment effectuer toutes les tâches susmentionnées au sein d'une équipe, à l'échelle des bases de code des logiciels modernes.
@@ -179,7 +179,7 @@ L'erreur vient du fait qu'au lieu d'un double deux-points, le code devrait utili
 
 
 #### Exercice
-Si un collègue vous dit qu'il a reçu un rapport de bogue d'un utilisateur de la version "Win32" de votre application,
+Si un collègue vous dit qu'il a reçu un rapport de bug d'un utilisateur de la version "Win32" de votre application,
 nommée d'après l'ancienne interface de programmation de Windows, avec le code d'erreur 39, pourriez-vous dire ce qui a causé l'erreur ?
 <details>
 <summary>Solution (cliquez pour développer)</summary>

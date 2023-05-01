@@ -1,0 +1,5 @@
+- L'indentation est incohérente (2, 3, 7 espaces...)
+- Les noms de classes sont incohérents (camelCase, snake_case, Firstletteruppercased, ...)
+- Il y a du code en commentaire qui pourrait être supprimé
+- Les commentaires sont inutiles car ils essaient de décrire _comment_ le code fonctionne...
+  - ...et faux, car `sorted` _retourne_ une liste triée, cette méthode ne trie pas la liste existante

@@ -20,16 +20,16 @@ Le [noyau du système d'exploitation seL4](https://sel4.systems/), par exemple, 
 Une telle méthode aurait pu fonctionner pour Ada Lovelace, une aristocrate disposant de beaucoup de temps libre, mais elle n'est pas réaliste pour les programmeurs de tous les jours.
 
 Une autre option moderne consiste à laisser les utilisateurs faire le travail, dans le cadre d'une version "bêta" ou d'un "accès anticipé".
-Les utilisateurs ont la possibilité d'utiliser un programme avant tout le monde, au prix de rencontrer des bogues et de les signaler, ce qui fait d'eux des testeurs.
+Les utilisateurs ont la possibilité d'utiliser un programme avant tout le monde, au prix de rencontrer des bugs et de les signaler, ce qui fait d'eux des testeurs.
 Cependant, cela ne fonctionne que si le programme est suffisamment intéressant, comme un jeu,
 alors que la plupart des programmes existants sont conçus comme des outils internes pour un public restreint qui ne voudra probablement pas faire de bêta-tests.
-En outre, elle n'élimine pas complètement les bogues. Le jeu "New World" d'Amazon, malgré une période de "bêta ouverte",
+En outre, elle n'élimine pas complètement les bugs. Le jeu "New World" d'Amazon, malgré une période de "bêta ouverte",
 [publié](https://www.denofgeek.com/games/new-world-bugs-glitches-exploits-list-cyberpunk-2077/) avec de nombreux problèmes, notamment un délai de 7 jours avant de réapparaître en cas de mort.
 
-Avons-nous vraiment besoin de tests ? Quelle est la pire conséquence d'un bogue ?
-Dans certains cas, le pire n'est pas si grave, comme par exemple un bogue dans un jeu en ligne.
-Mais imaginez un bogue dans le système d'inscription aux cours d'une université, laissant les étudiants incertains de s'ils sont inscrits à un cours ou non.
-Pire, un bogue dans une banque peut faire apparaître ou disparaître de l'argent.
+Avons-nous vraiment besoin de tests ? Quelle est la pire conséquence d'un bug ?
+Dans certains cas, le pire n'est pas si grave, comme par exemple un bug dans un jeu en ligne.
+Mais imaginez un bug dans le système d'inscription aux cours d'une université, laissant les étudiants incertains de s'ils sont inscrits à un cours ou non.
+Pire, un bug dans une banque peut faire apparaître ou disparaître de l'argent.
 Pire encore, les bugs peuvent être mortels, comme dans le cas de la [machine de radiothérapie Therac-25](https://en.wikipedia.org/wiki/Therac-25) qui a tué certains patients.
 
 
@@ -53,7 +53,7 @@ Les tests se déroulent essentiellement en trois étapes :
 
 Si le résultat est celui que nous attendons, nous sommes convaincus que le système fait ce qu'il faut dans ce cas.
 Cependant, la "confiance" n'est pas une garantie.
-Comme l'a dit [Edsger W. Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra), "Les tests peuvent être utilisés pour démontrer la présence de bogues, mais jamais pour démontrer leur absence".
+Comme l'a dit [Edsger W. Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra), "Les tests peuvent être utilisés pour démontrer la présence de bugs, mais jamais pour démontrer leur absence".
 
 La manière la plus simple de tester est le test manuel.
 Un humain exécute manuellement le processus ci-dessus.
@@ -85,7 +85,7 @@ Enfin, les tests automatisés permettent de tester les cas limites en simulant l
 Les tests automatisés présentent également d'autres avantages : les tests peuvent être écrits une fois et utilisés pour toujours, partout, même sur des implémentations différentes.
 Par exemple, la [spécification CommonMark](https://spec.commonmark.org/) pour les outils utilisant le format Markdown comprend de nombreux exemples utilisés comme tests,
 ce qui permet à chacun d'utiliser ces tests pour vérifier son propre outil.
-Si quelqu'un remarque un bogue qui n'a pas été couvert par les tests standard, il peut suggérer un test qui couvre ce bogue pour la prochaine version de la spécification.
+Si quelqu'un remarque un bug qui n'a pas été couvert par les tests standard, il peut suggérer un test qui couvre ce bug pour la prochaine version de la spécification.
 Ce test peut ensuite être utilisé par tous les autres.
 Le nombre de tests ne cesse de croître avec le temps et peut atteindre des quantités énormes, comme [la suite de tests SQLite](https://www.sqlite.org/testing.html),
 qui compte actuellement plus de 90 millions de lignes de tests.
@@ -176,7 +176,7 @@ Si la fonction lève une exception du bon type, `assertThrows` renvoie cette exc
 
 ---
 #### Exercice
-C'est à vous de jouer ! Ouvrez [le projet d'exercice du cours](exercises/lecture) et testez `Functions.java`.
+C'est à vous de jouer ! Ouvrez [le projet d'exercice du cours](exercices/cours) et testez `Functions.java`.
 Commencez par tester des valeurs valides pour `fibonacci`, puis testez qu'il rejette les valeurs invalides.
 Pour `split` et `shuffle`, rappelez-vous que Hamcrest a beaucoup de matchers et a de la documentation.
 <details>
@@ -188,7 +188,7 @@ et tester qu'il lève une exception pour les nombres inférieurs à `0` en utili
 
 Pour tester `split`, vous pourriez utiliser le matcheur `contains` de Hamcrest, et pour la fonction de mélange, vous pourriez utiliser `arrayContainingInAnyOrder`.
 
-Nous fournissons quelques [exemples](exercises/solutions/lecture/FunctionsTests.java).
+Nous fournissons quelques [exemples](exercices/solutions/cours/FunctionsTests.java).
 
 </p>
 </details>
@@ -199,7 +199,7 @@ Nous fournissons quelques [exemples](exercises/solutions/lecture/FunctionsTests.
 Pensez à ce à quoi ressembleront les résultats des tests si vous combinez plusieurs tests dans une seule méthode.
 Si la méthode de test échoue, vous n'obtiendrez qu'un message d'exception concernant le premier échec de la méthode, et vous ne saurez pas si le reste de la méthode de test réussira.
 Le fait d'avoir de grandes méthodes de test signifie également que la fraction de tests réussis est moins représentative de l'exactitude globale du code.
-À l'extrême, si vous écrivez toutes les assertions dans une seule méthode, un seul bogue dans votre code entraînerait 0 % de réussite des tests.
+À l'extrême, si vous écrivez toutes les assertions dans une seule méthode, un seul bug dans votre code entraînerait 0 % de réussite des tests.
 Vous devriez donc préférer les petites méthodes de test qui testent chacune un concept "logique", qui peut nécessiter une ou plusieurs assertions.
 Cela ne signifie pas qu'il faille copier-coller de gros blocs de code entre les tests ;
 il faut plutôt partager le code en utilisant des fonctions telles que les annotations `@BeforeAll`, `@AfterAll`, `@BeforeEach` et `@AfterEach` de JUnit.
@@ -320,7 +320,7 @@ Celui du milieu est celui que nous avons déjà vu. Les deux autres peuvent semb
 Les tests avant le développement sont communément appelés **développement piloté par les tests**, "test-driven development" en anglais ou _TDD_ en abrégé,
 parce que les tests "pilotent" le développement, en particulier la conception du code.
 Dans la méthode TDD, on écrit d'abord les tests, puis le code.
-Après avoir écrit le code, on peut exécuter les tests et corriger les bogues.
+Après avoir écrit le code, on peut exécuter les tests et corriger les bugs.
 Cela oblige les programmeurs à réfléchir avant de coder, au lieu d'écrire la première chose qui leur vient à l'esprit.
 Il fournit un retour d'information instantané pendant l'écriture du code, ce qui peut être très gratifiant : écrivez une partie du code, exécutez les tests, et certains tests réussissent maintenant !
 Cela donne une sorte d'indication de l'état d'avancement. Il n'est pas non plus trop tard pour corriger la conception, puisque celle-ci n'existe pas encore.
@@ -388,7 +388,7 @@ Une fois que vous aurez terminé, vous reviendrez vers le client, et ainsi de su
 
 ----
 #### Exercice
-A vous de jouer ! Dans [le projet d'exercices du cours](exercises/lecture) vous trouverez `PeopleCounter.java`, qui est documenté mais non implémenté.
+A vous de jouer ! Dans [le projet d'exercices du cours](exercices/cours) vous trouverez `PeopleCounter.java`, qui est documenté mais non implémenté.
 Écrivez d'abord des tests, puis implémentez le code et corrigez votre code s'il ne passe pas les tests, à la manière TDD.
 Il faut d'abord réfléchir aux tests à écrire, puis les écrire et enfin implémenter le code.
 
@@ -400,22 +400,22 @@ Vous pourriez avoir cinq tests : le compteur s'initialise à zéro, la méthode 
 la méthode "reset" met le compteur à zéro, la méthode "increment" n'incrémente pas au-delà du maximum,
 et le maximum ne peut être inférieur à zéro.
 
-Nous fournissons [des exemples de tests](exercises/solutions/lecture/PeopleCounterTests.java) et [une implémentation de référence](exercises/solutions/lecture/PeopleCounter.java).
+Nous fournissons [des exemples de tests](exercices/solutions/cours/PeopleCounterTests.java) et [une implémentation de référence](exercices/solutions/cours/PeopleCounter.java).
 
 </p>
 </details>
 
 ----
 
-Les tests effectués _après_ le déploiement sont communément appelés **tests de régression**. L'objectif est de s'assurer que les anciens bogues ne réapparaissent pas.
+Les tests effectués _après_ le déploiement sont communément appelés **tests de régression**. L'objectif est de s'assurer que les anciens bugs ne réapparaissent pas.
 
-Lorsqu'on est confronté à un bogue, l'idée est d'abord d'écrire un test défaillant qui reproduit le bogue,
-puis de corriger le bogue, et enfin d'exécuter à nouveau le test pour montrer que le bogue est corrigé.
-Il est essentiel d'exécuter le test avant de corriger le bogue afin de s'assurer qu'il échoue réellement.
-Dans le cas contraire, le test pourrait ne pas reproduire le bogue et ne passerait après la "correction" du bogue que parce qu'il passait déjà avant, ne fournissant ainsi aucune information utile.
+Lorsqu'on est confronté à un bug, l'idée est d'abord d'écrire un test défaillant qui reproduit le bug,
+puis de corriger le bug, et enfin d'exécuter à nouveau le test pour montrer que le bug est corrigé.
+Il est essentiel d'exécuter le test avant de corriger le bug afin de s'assurer qu'il échoue réellement.
+Dans le cas contraire, le test pourrait ne pas reproduire le bug et ne passerait après la "correction" du bug que parce qu'il passait déjà avant, ne fournissant ainsi aucune information utile.
 
-Rappelons l'exemple de SQLite : toutes ces 90 millions de lignes de code montrent qu'une très longue liste de bogues possibles n'apparaîtra plus dans aucune version future.
-Cela ne signifie pas qu'il n'y a plus de bogues, mais que la plupart des bogues courants ont été supprimés, et que les autres sont très probablement des cas de figure inhabituels que personne n'a encore rencontrés.
+Rappelons l'exemple de SQLite : toutes ces 90 millions de lignes de code montrent qu'une très longue liste de bugs possibles n'apparaîtra plus dans aucune version future.
+Cela ne signifie pas qu'il n'y a plus de bugs, mais que la plupart des bugs courants ont été supprimés, et que les autres sont très probablement des cas de figure inhabituels que personne n'a encore rencontrés.
 
 
 ## Comment peut-on tester des modules entiers ?
@@ -503,7 +503,7 @@ Les implémentations de l'interface "client de données", comme Ethernet ou Wi-F
 
 ---
 #### Exercice
-A vous de jouer ! Dans [le projet d'exercices du cours](exercises/lecture) vous trouverez `JokeFetcher.java`, qui n'est pas facile à tester dans son état actuel.
+A vous de jouer ! Dans [le projet d'exercices du cours](exercices/cours) vous trouverez `JokeFetcher.java`, qui n'est pas facile à tester dans son état actuel.
 Modifiez-le pour le rendre testable, écrivez des tests et modifiez `App.java` pour qu'il corresponde aux changements de `JokeFetcher` et préserve la fonctionnalité du programme original.
 Commencez par écrire une interface pour un client HTTP, implémentez-la en déplaçant le code existant, et utilisez-la dans `JokeFetcher`. Ensuite, ajoutez des tests.
 
@@ -512,8 +512,8 @@ Commencez par écrire une interface pour un client HTTP, implémentez-la en dép
 <p>
 
 Les changements nécessaires sont similaires à ceux que nous avons discutés plus haut, y compris l'injection d'une dépendance `HttpClient` et le fait que la fonction retourne une `String`.
-Nous fournissons [un exemple de `JokeFetcher`](exercises/solutions/lecture/JokeFetcher.java), [un exemple d'`App`](exercises/solutions/lecture/App.java),
-et [des tests](exercises/solutions/lecture/JokeFetcherTests.java).
+Nous fournissons [un exemple de `JokeFetcher`](exercices/solutions/cours/JokeFetcher.java), [un exemple d'`App`](exercices/solutions/cours/App.java),
+et [des tests](exercices/solutions/cours/JokeFetcherTests.java).
 
 </p>
 </details>

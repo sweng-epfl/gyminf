@@ -52,10 +52,10 @@ Un cimmit a quatre composantes principales : qui, quoi, quand et pourquoi.
 Le "quoi" est le contenu du commit, les modifications elles-mêmes.
 "Quand" est la date et l'heure à laquelle le commit a été effectué. Cette date peut être antérieure à la date à laquelle le commit a été poussé dans le dépôt.
 Le "Pourquoi" est un message associé au commit qui explique pourquoi les modifications ont été apportées,
-par exemple en expliquant pourquoi il y avait un bogue et pourquoi le nouveau code corrige le bogue.
+par exemple en expliquant pourquoi il y avait un bug et pourquoi le nouveau code corrige le bug.
 Le "pourquoi" est particulièrement important, car vous devrez souvent revenir sur d'anciennes modifications et comprendre pourquoi elles ont été effectuées.
 
-Il arrive parfois qu'une modification entraîne des problèmes. Il se peut qu'une modification censée améliorer les performances introduise un bogue.
+Il arrive parfois qu'une modification entraîne des problèmes. Il se peut qu'une modification censée améliorer les performances introduise un bug.
 Les systèmes de gestion de version vous permettent d'inverser ("revert") ce commit, ce qui crée un nouveau commit dont le contenu est l'inverse de celui d'origine.
 En d'autres termes, si le commit original a remplacé "X" par "Y", un commit inversé remplace "Y" par "X".
 Il est important de noter que le commit original n'est pas perdu ou détruit, mais qu'un nouveau commit est créé.
@@ -89,14 +89,14 @@ Si deux développeurs ont modifié la même fonction de manière différente, pa
 
 Les _branches_ sont une autre fonctionnalité qui a du sens si un système peut gérer les conflits et les fusions.
 Parfois, les développeurs souhaitent travailler en parallèle sur plusieurs copies de la base de code.
-Par exemple, vous êtes peut-être en train de travailler sur des modifications visant à améliorer les performances, lorsqu'un client vous fait part d'un rapport de bogue.
-Vous pourriez corriger le bogue et créer un commit avec la correction et vos modifications de performance, mais le commit résultant n'est pas pratique.
-Si, par la suite, vous devez revenir sur les modifications de performance, par exemple, vous devrez également revenir sur la correction de bogues car elle se trouve dans le même commit.
-Au lieu de cela, vous créez une branche pour vos changements de performance, puis vous passez à une branche pour la correction des bogues, et vous pouvez travailler sur les deux en parallèle.
-Lorsque votre correction de bogue est prête, vous pouvez la _fusionner_ dans la branche "principale" du dépôt, et il en va de même pour les changements de performance.
+Par exemple, vous êtes peut-être en train de travailler sur des modifications visant à améliorer les performances, lorsqu'un client vous fait part d'un rapport de bug.
+Vous pourriez corriger le bug et créer un commit avec la correction et vos modifications de performance, mais le commit résultant n'est pas pratique.
+Si, par la suite, vous devez revenir sur les modifications de performance, par exemple, vous devrez également revenir sur la correction de bugs car elle se trouve dans le même commit.
+Au lieu de cela, vous créez une branche pour vos changements de performance, puis vous passez à une branche pour la correction des bugs, et vous pouvez travailler sur les deux en parallèle.
+Lorsque votre correction de bug est prête, vous pouvez la _fusionner_ dans la branche "principale" du dépôt, et il en va de même pour les changements de performance.
 Une utilisation courante des branches concerne les versions : vous pouvez par exemple publier la version 1.0 de votre logiciel et créer une branche représentant l'état du dépôt pour cette version.
 Vous pouvez alors travailler sur la future version 2.0 dans la branche "principale".
-Si un client signale un bogue dans la version 1.0, vous pouvez passer à la branche de la version 1.0, corriger le bogue et publier la correction,
+Si un client signale un bug dans la version 1.0, vous pouvez passer à la branche de la version 1.0, corriger le bug et publier la correction,
 puis reprendre votre travail sur la version 2.0. Vos modifications pour la version 1.0 n'ont pas affecté votre branche principale, car vous les avez effectuées dans une autre branche.
 
 Dans les logiciels modernes, le processus habituel de création de branches consiste à créer une branche à partir de la branche principale du dépôt,
@@ -109,10 +109,10 @@ Souvent, il est judicieux d'écraser les commits d'une branche en un seul commit
 Cela permet de combiner toutes les modifications de la branche en un seul commit propre dans l'historique de la branche principale, plutôt que d'avoir un tas de commits qui font quelques petites modifications chacun mais qui n'ont aucun sens l'un sans l'autre.
 
 Dans le cas de branches représentant des versions, il est parfois nécessaire d'appliquer les mêmes modifications à plusieurs branches.
-Par exemple, en développant la version 2.0 dans la branche principale, vous pouvez trouver un bogue et vous rendre compte que ce bogue existe également dans la version 1.0.
+Par exemple, en développant la version 2.0 dans la branche principale, vous pouvez trouver un bug et vous rendre compte que ce bug existe également dans la version 1.0.
 Vous pouvez faire un commit corrigeant le bug dans la version 2.0, et ensuite "_cherry pick_" le commit dans la branche pour la version 1.0.
 Tant que la modification n'entre pas en conflit avec d'autres modifications apportées à la branche de la version 1.0,
-le système de contrôle de la version peut copier votre commit de correction de bogue dans une commit pour une autre branche.
+le système de contrôle de la version peut copier votre commit de correction de bug dans une commit pour une autre branche.
 
 Les systèmes de gestion de version de deuxième génération avaient pour but de permettre aux développeurs de gérer les conflits.
 Alice peut travailler sur le fichier A sans avoir besoin de le verrouiller, et Bob peut également travailler sur le fichier A en même temps.
@@ -143,11 +143,11 @@ Il existe également d'autres systèmes de gestion de version de troisième gén
 De nombreux développeurs utilisent des sites web publics pour héberger le clone du dépôt "principal" de leurs projets.
 Le plus connu aujourd'hui est GitHub, qui utilise Git mais n'y est pas techniquement lié.
 GitHub ne se contente pas de stocker un clone de dépôt, mais peut également héberger une
-liste de "problèmes" ("issues") pour le dépôt, tels que les bogues et les demandes de fonctionnalités, ainsi que d'autres données telles qu'un wiki pour la documentation.
+liste de "problèmes" ("issues") pour le dépôt, tels que les bugs et les demandes de fonctionnalités, ainsi que d'autres données telles qu'un wiki pour la documentation.
 Il existe également d'autres sites web présentant des caractéristiques similaires, tels que GitLab et BitBucket, bien qu'ils ne soient pas aussi populaires.
 
 Un exemple de projet développé sur GitHub est [le runtime .NET](https://github.com/dotnet/runtime), qui est développé principalement par des employés de Microsoft et entièrement sur GitHub.
-Les conversations sur les bogues, les demandes de fonctionnalités et les révisions de code se déroulent au grand jour, sur GitHub.
+Les conversations sur les bugs, les demandes de fonctionnalités et les révisions de code se déroulent au grand jour, sur GitHub.
 
 
 ## Comment utiliser Git ?
@@ -539,7 +539,7 @@ Ne serait-ce pas bien s'il existait à la place un journal que quelqu'un aurait 
 C'est à cela que servent les messages de commit : garder une trace de ce que vous faites et de la raison pour laquelle vous l'avez fait,
 afin que d'autres personnes le sachent même des années après.
 Les messages de commit sont utiles aux personnes qui examinent votre code avant de l'approuver pour le fusionner dans la branche principale, 
-ainsi qu'à vos collègues qui recherchent des bogues plusieurs mois après l'écriture du code.
+ainsi qu'à vos collègues qui recherchent des bugs plusieurs mois après l'écriture du code.
 Dans ce contexte, vos collègues incluent le "futur vous".
 Même si les changements vous semblent "évidents" ou "clairs" au moment où vous les effectuez, quelques mois plus tard, vous ne vous souviendrez plus de la raison pour laquelle vous avez agi de la sorte.
 
@@ -566,7 +566,7 @@ Git dispose d'une commande `log` pour afficher l'historique, et `git log --oneli
 
 Un bon résumé doit être court et à l'impératif.
 Par exemple :
-- "Corriger le bogue #145"
+- "Corriger le bug #145"
 - "Ajouter une version HD du fond d'écran"
 - "Supporter Unicode 14.0"
 

@@ -302,7 +302,7 @@ et le swahili en a [dix-huit](https://en.wikipedia.org/wiki/Swahili_grammar#Noun
 Les noms anglais ont une forme "singulière" et une forme "plurielle", tout comme de nombreuses langues telles que le français, mais ce n'est pas universel ;
 le slovène, par exemple, a une terminaison pour 1, une pour 2, une pour 3 et 4, et une pour 5 et plus.
 
-Les traductions peuvent comporter des bogues, tout comme les logiciels.
+Les traductions peuvent comporter des bugs, tout comme les logiciels.
 Par exemple, la traduction allemande du jeu Champions World Class Soccer comporte un bug dans lequel "shootout" n'est pas traduit par "schiessen", comme il se doit,
 mais plutôt à "scheissen", qui a une signification totalement différente bien qu'il n'y ait qu'une lettre d'écart.
 Un autre cas de problèmes allemands se présente [dans le jeu Grandia HD](https://www.nintendolife.com/news/2019/08/random_amazingly_grandia_hds_translation_gaffe_is_only_the_second_funniest_german_localisation_mistake) :
